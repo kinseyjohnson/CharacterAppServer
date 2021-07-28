@@ -4,7 +4,7 @@ require('dotenv').config()
 
 const controllers = require('./controllers')
 
-const middleware = require('./middleware')
+// const middleware = require('./middleware/')
 
 const dbConnection = require('./db')
 
