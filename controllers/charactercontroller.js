@@ -63,5 +63,43 @@ router.delete('/delete/:id', async (req, res) => {
 })
 
 
-module.exports = router;
+router.put('/edit/:id', async (req, res) => {
+    const {characterName, playerName, characterClass, level, race, background, alignment, strength, dexterity, constitution, intelligence, wisdom, charisma} = req.body.character;
+    const characterId = req.params.id;
+    // const userId = req.user.id;
 
+    const query = {
+        where: {
+            id: characterId,
+            // owner: userId
+        }
+    };
+
+    const updatedCharacter = {
+        characterName: characterName,
+        playerName: playerName,
+        characterClass: characterClass,
+        level: level,
+        race: race,
+        background: background,
+        alignment: alignment,
+        strength: strength,
+        dexterity: dexterity,
+        constitution: constitution,
+        intelligence: intelligence,
+        wisdom: wisdom,
+        charisma: charisma,
+    };
+
+    try {
+        const update = await CharacterModel.update(updatedCharacter, query);
+        res.status(200).json({
+            message: 'Character updated successfully',
+            updatedCharacter
+        });
+    } catch (err) {
+        res.status(500).json({error: err});
+    }
+});
+
+module.exports = router;
