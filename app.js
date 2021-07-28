@@ -4,6 +4,8 @@ require('dotenv').config()
 
 const controllers = require('./controllers')
 
+const middleware = require('./middleware')
+
 const dbConnection = require('./db')
 
 app.use(Express.json())
@@ -20,6 +22,11 @@ dbConnection.authenticate()
     })
 
 app.use('/user', controllers.userController)
+// app.use('/character', controllers.characterController)
+
+
+
+
 // app.listen(process.env.PORT, () => {
 //     console.log(`[SERVER]: App is listening ${process.env.PORT}`)
 // });
