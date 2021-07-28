@@ -22,4 +22,11 @@ dbConnection.authenticate()
     })
 
 app.use('/user', controllers.userController)
-app.use('/character', controllers.characterController)
+// app.use('/character', controllers.characterController)
+
+
+
+
+// app.listen(process.env.PORT, () => {
+//     console.log(`[SERVER]: App is listening ${process.env.PORT}`)
+// });
