@@ -11,7 +11,7 @@ const Character = db.define('character', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    characterClass: {
+    class: {
         type: DataTypes.STRING,
         allowNull: false
     },
