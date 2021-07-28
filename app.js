@@ -1,15 +1,25 @@
 const Express = require('express');
 const app = Express();
-const dbConnection = require('./db')
 require('dotenv').config()
 
+const controllers = require('./controllers')
+
+const middleware = require('./middleware')
+
+const dbConnection = require('./db')
+
+app.use(Express.json())
+
 dbConnection.authenticate()
-.then(() => dbConnection.sync())
-.then(() => {
-    app.listen(3000, () => {
-        console.log(`[Server]: App listening on 3000.`);
-    });
-})
-.catch((err) => {
-    console.log(`[Server]: Server crashed. Error = ${err}`)
-})
+    .then(() => dbConnection.sync())
+    .then(() => {
+        app.listen(process.env.PORT, () => {
+            console.log(`[SERVER] is running on ${process.env.PORT}`)
+        })
+    })
+    .catch((err) => {
+        console.log(`[SERVER] crashed ${err}`)
+    })
+
+app.use('/user', controllers.userController)
+
