@@ -1,6 +1,6 @@
-const router = require('express').Router
+const router = require('express').Router()
 
-const {CharacterModel} = require('../models')
+const {CharacterModel} = require('../models');
 
 
 router.post('/create', /*validation,*/ async (req, res) => {

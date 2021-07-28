@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize("postgres://postgres:@localhost:5432/character-creator-app")
+const sequelize = new Sequelize(process.env.DB)
 
 module.exports = sequelize;
 
