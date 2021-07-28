@@ -2,7 +2,7 @@ const DataTypes = require('sequelize');
 const db = require('../db');
 
 
-const Character = db.define('Character', {
+const Character = db.define('character', {
   characterName: {
     type: DataTypes.STRING,
     allowNull: false
@@ -11,7 +11,7 @@ const Character = db.define('Character', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  class: {
+  characterClass: {
     type: DataTypes.STRING,
     allowNull: false
   },
