@@ -1,11 +1,11 @@
-const router = require('express').Router()
+const router = require('express').Router();
 
 const {CharacterModel} = require('../models');
 
 
 router.post('/create', /*validation,*/ async (req, res) => {
     const {characterName, playerName, characterClass, level, race, background, alignment, strength, dexterity, constitution, intelligence, wisdom, charisma} = req.body.character;
-    const {id} = req.user
+    // const {id} = req.user
     const characterEntry = {
         characterName,
         playerName,
@@ -20,7 +20,7 @@ router.post('/create', /*validation,*/ async (req, res) => {
         intelligence,
         wisdom,
         charisma,
-        owner: id
+        // owner: id
     }
     try {
         const newCharacter = await CharacterModel.create(characterEntry)
@@ -30,3 +30,5 @@ router.post('/create', /*validation,*/ async (req, res) => {
     }
     CharacterModel.create(characterEntry)
 })
+
+module.exports = router;
