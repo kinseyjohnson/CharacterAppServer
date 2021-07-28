@@ -22,4 +22,4 @@ dbConnection.authenticate()
     })
 
 app.use('/user', controllers.userController)
-app.use('/character', controllers.characterController)
+// app.use('/character', controllers.characterController)

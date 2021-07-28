@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {UserModel} = require('../models');
-const jwt = require('jsonwebtoken')
+// const jwt = require('jsonwebtoken')
 
 router.post('/register', async (req, res) => {
     let {email, password, firstName, lastName} = req.body.user;
@@ -13,17 +13,51 @@ router.post('/register', async (req, res) => {
             lastName,
         });
         
-        let token = jwt.sign({id: User.id}, process.env.SECRET_KEY, {expiresIn: 60 * 60 * 24})
+        // let token = jwt.sign({id: User.id}, process.env.SECRET_KEY, {expiresIn: 60 * 60 * 24})
         res.status(201).json({
             message: "User successfully registered",
             user: User,
-            token
+            // token
         })
     } catch (err) {
         res.status(500).json({
-            message: `Failes to register user ${err}`,
+            message: `Failed to register user ${err}`,
         })
     }
 });
+
+// Login
+
+router.post("/login", async (req, res) => {
+    let { email, password } = req.body.user;
+  
+    try {
+      let loginUser = await UserModel.findOne({
+        where: {
+          email: email,
+        },
+      });
+      if (loginUser) {
+  
+    //   let token = jwt.sign({id: loginUser.id},  process.env.SECRET_KEY, {expiresIn: 60 * 60 * 24});
+  
+        res.status(200).json({
+          user: loginUser,
+          message: "User successfully logged in!",
+          token
+  
+        });
+      } else {
+        res.status(401).json({
+          message: `Login failed: ${err}`,
+        });
+      }
+    } catch (error) {
+      res.status(500).json({
+        message: `Failed to log user in: ${err}`,
+      });
+    }
+  });
+  
 
 module.exports = router;
