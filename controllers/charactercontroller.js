@@ -1,3 +1,4 @@
+
 const router = require('express').Router();
 
 const {CharacterModel} = require('../models');
@@ -63,3 +64,4 @@ router.delete('/delete/:id', async (req, res) => {
 
 
 module.exports = router;
+
