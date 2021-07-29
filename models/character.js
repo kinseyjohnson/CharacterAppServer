@@ -54,6 +54,9 @@ const Character = db.define('character', {
   charisma: {
     type: DataTypes.INTEGER,
     allowNull: false
+  },
+  user: {
+    type: DataTypes.INTEGER
   }
 });
 
