@@ -4,7 +4,11 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
 router.post('/register', async (req, res) => {
-    let {email, password, firstName, lastName} = req.body.user;
+    let {email, 
+        password, 
+        firstName, 
+        lastName
+    } = req.body.user;
     
     try {
         let User = await UserModel.create({
@@ -22,7 +26,7 @@ router.post('/register', async (req, res) => {
         })
     } catch (err) {
         res.status(500).json({
-            message: `Failes to register user ${err}`,
+            message: `Failes to register user ${err}`
         })
     }
 });
