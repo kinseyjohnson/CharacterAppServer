@@ -5,11 +5,6 @@ const bcrypt = require('bcryptjs')
 const validateJWT = require('../middleware/validate-session');
 
 
-
-router.get('/pract', validateJWT, async (req, res) => {
-    res.send('WTF');
-})
-
 router.post('/register', async (req, res) => {
     let {email, 
         password, 
