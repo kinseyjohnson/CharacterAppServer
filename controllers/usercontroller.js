@@ -35,8 +35,8 @@ router.post('/register', async (req, res) => {
 
 
 // Login
-
-router.post("/login", validateJWT, async (req, res) => {
+                //, validateJWT (second var in the next line)
+router.post("/login", async (req, res) => {
     const { email, password } = req.body.user;
     try {
         let loginUser = await UserModel.findOne({
