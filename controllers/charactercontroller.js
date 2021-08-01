@@ -3,6 +3,13 @@ const router = require('express').Router();
 
 const {CharacterModel} = require('../models');
 
+router.get('/createRandom', async (req, res) => {
+    let jsonData = require('./Jason.json');
+    res.status(200).json({
+        json: jsonData
+    })
+})
+
 
 router.post('/create', /*validation,*/ async (req, res) => {
     const {characterName, playerName, characterClass, level, race, background, alignment, strength, dexterity, constitution, intelligence, wisdom, charisma} = req.body.character;
