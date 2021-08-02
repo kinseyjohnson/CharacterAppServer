@@ -7,17 +7,15 @@ const validateJWT = require('../middleware/validate-session');
 
 router.post('/register', async (req, res) => {
     let {email, 
-        password, 
-        firstName, 
-        lastName
+        password,  
+        username
     } = req.body.user;
     
     try {
         let User = await UserModel.create({
             email,
             password: bcrypt.hashSync(password, 7),
-            firstName,
-            lastName,
+            username
         });
         
         let token = jwt.sign({id: User.id}, process.env.JWT_SECRET, {expiresIn: 60 * 60 * 24})

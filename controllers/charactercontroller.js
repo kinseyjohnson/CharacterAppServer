@@ -3,10 +3,10 @@ const router = require('express').Router();
 
 const {CharacterModel} = require('../models');
 
-router.get('/createRandom', async (req, res) => {
-    let jsonData = require('./Jason.json');
+router.get('/create', async (req, res) => {
+    let heroesname = require('./heroesname.json');
     res.status(200).json({
-        json: jsonData
+        json: heroesname
     })
 })
 
