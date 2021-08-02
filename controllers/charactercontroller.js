@@ -2,6 +2,13 @@ const router = require('express').Router();
 const validateJWT = require('../middleware/validate-session');
 const {CharacterModel} = require('../models');
 
+router.get('/create', async (req, res) => {
+    let heroesname = require('./heroesname.json');
+    res.status(200).json({
+        json: heroesname
+    })
+})
+
 
 router.post('/create', validateJWT, async (req, res) => {
     const {characterName, playerName, characterClass, level, race, background, alignment, strength, dexterity, constitution, intelligence, wisdom, charisma} = req.body.character;
