@@ -43,6 +43,20 @@ router.get('/findAll', async (req, res) => {
     }
 })
 
+router.get('/:id', async(req, res) => {
+    let {id} = req.user;
+    try{
+        const userLog = await Log.findAll({
+            where: {
+                owner_id: id
+            }
+        });
+        res.status(200).json(userLog);
+    } catch (err) {
+        res.status(500).json({error: err});
+    }
+});
+
 router.delete('/delete/:id', async (req, res) => {
     try {
         await CharacterModel.destroy({

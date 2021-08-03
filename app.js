@@ -1,13 +1,12 @@
 const Express = require('express');
 const app = Express();
-require('dotenv').config()
-
-const controllers = require('./controllers')
-
-const middleware = require('./middleware')
+require('dotenv').config();
 
 const dbConnection = require('./db')
+const controllers = require('./controllers')
+const middleware = require('./middleware')
 
+app.use(middleware.CORS)
 app.use(Express.json())
 
 dbConnection.authenticate()

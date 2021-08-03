@@ -5,24 +5,17 @@ const bcrypt = require('bcryptjs')
 const validateJWT = require('../middleware/validate-session');
 
 
-
-router.get('/pract', validateJWT, async (req, res) => {
-    res.send('WTF');
-})
-
 router.post('/register', async (req, res) => {
     let {email, 
-        password, 
-        firstName, 
-        lastName
+        password,  
+        username
     } = req.body.user;
     
     try {
         let User = await UserModel.create({
             email,
             password: bcrypt.hashSync(password, 7),
-            firstName,
-            lastName,
+            username
         });
         
         let token = jwt.sign({id: User.id}, process.env.JWT_SECRET, {expiresIn: 60 * 60 * 24})
@@ -40,8 +33,8 @@ router.post('/register', async (req, res) => {
 
 
 // Login
-
-router.post("/login", validateJWT, async (req, res) => {
+                //, validateJWT (second var in the next line)
+router.post("/login", async (req, res) => {
     const { email, password } = req.body.user;
     try {
         let loginUser = await UserModel.findOne({
