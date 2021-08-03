@@ -76,12 +76,12 @@ router.delete('/delete/:id', validateJWT, async (req, res) => {
 router.put('/edit/:id', validateJWT, async (req, res) => {
     const {characterName, playerName, characterClass, level, race, background, alignment, strength, dexterity, constitution, intelligence, wisdom, charisma} = req.body.character;
     const characterId = req.params.id;
-    // const userId = req.user.id;
+    const userId = req.user.id;
 
     const query = {
         where: {
             id: characterId,
-            // owner: userId
+            owner: userId
         }
     };
 
