@@ -2,6 +2,9 @@ const router = require('express').Router();
 const validateJWT = require('../middleware/validate-session');
 const {CharacterModel} = require('../models');
 
+let validateJWT = require("../middleware/validate-session");
+
+
 router.get('/create', async (req, res) => {
     let heroesname = require('./heroesname.json');
     res.status(200).json({
@@ -27,7 +30,7 @@ router.post('/create', validateJWT, async (req, res) => {
         intelligence,
         wisdom,
         charisma,
-        user: id
+        owner: id
     }
     try {
         const newCharacter = await CharacterModel.create(characterEntry)
@@ -38,7 +41,7 @@ router.post('/create', validateJWT, async (req, res) => {
     // CharacterModel.create(characterEntry)
 })
 
-router.get('/findAll', async (req, res) => {
+router.get('/findAll', validateJWT, async (req, res) => {
     try {
         const allCharacters = await CharacterModel.findAll();
         res.status(200).json(allCharacters);
@@ -50,10 +53,6 @@ router.get('/findAll', async (req, res) => {
 })
 
 router.delete('/delete/:id', validateJWT, async (req, res) => {
-    const userId = req.user.id;
-    const characterId = req.params.id;
-    const userName = req.user.firstName
-
     try {
         await CharacterModel.destroy({
             where: {
