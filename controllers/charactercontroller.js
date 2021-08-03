@@ -2,13 +2,12 @@ const router = require('express').Router();
 const validateJWT = require('../middleware/validate-session');
 const {CharacterModel} = require('../models');
 
-let validateJWT = require("../middleware/validate-session");
 
 
 router.get('/create', async (req, res) => {
-    let heroesname = require('./heroesname.json');
+    let heroesname = require('./heroesnames.json');
     res.status(200).json({
-        json: heroesname
+        json: heroesnames
     })
 })
 
@@ -75,22 +74,30 @@ router.delete('/delete/:id', validateJWT, async (req, res) => {
 router.put('/edit/:id', validateJWT, async (req, res) => {
     const characterId = req.params.id;
     const userId = req.user.id;
-    const userName = req.user.firstName
-    const {
-        characterName,
-        playerName,
-        characterClass,
-        level,
-        race,
-        background,
-        alignment,
-        strength,
-        dexterity,
-        constitution,
-        intelligence,
-        wisdom,
-        charisma
-    } = req.body.character;
+
+    const query = {
+        where: {
+            id: characterId,
+            owner: userId
+        }
+    };
+
+    const updatedCharacter = {
+        characterName: characterName,
+        playerName: playerName,
+        characterClass: characterClass,
+        level: level,
+        race: race,
+        background: background,
+        alignment: alignment,
+        strength: strength,
+        dexterity: dexterity,
+        constitution: constitution,
+        intelligence: intelligence,
+        wisdom: wisdom,
+        charisma: charisma,
+    };
+
     try {
         CharacterModel.update({
                 characterName,
