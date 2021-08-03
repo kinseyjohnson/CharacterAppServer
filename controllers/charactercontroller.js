@@ -7,7 +7,7 @@ let validateJWT = require("../middleware/validate-session");
 
 
 router.get('/create', async (req, res) => {
-    let heroesname = require('./heroesnames.json');
+    let heroesnames = require('./heroesnames.json');
     res.status(200).json({
         json: heroesnames
     })
