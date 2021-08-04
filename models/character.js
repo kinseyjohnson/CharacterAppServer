@@ -55,8 +55,8 @@ const Character = db.define('character', {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-  user: {
-    type: DataTypes.INTEGER
+  owner: {
+    type: DataTypes.STRING
   }
 });
 
