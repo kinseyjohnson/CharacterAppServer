@@ -38,7 +38,6 @@ router.post('/create', validateJWT, async (req, res) => {
     } catch (err) {
         res.status(500).json({error: err});
     }
-    // CharacterModel.create(characterEntry)
 })
 
 router.get('/findAll', validateJWT, async (req, res) => {
