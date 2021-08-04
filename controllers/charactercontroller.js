@@ -53,6 +53,25 @@ router.get('/findAll', validateJWT, async (req, res) => {
 })
 
 
+router.get('/usercharacters', validateJWT, async (req, res) => {
+    const username = req.user.username
+    try {
+        const query = {
+            where: {
+                owner: username
+            }
+        };
+        
+        const userCharacters = await CharacterModel.findAll(query);
+        res.status(200).json(userCharacters);
+    } catch (err) {
+        res.status(500).json({
+            error: err
+        })
+    }
+})
+
+
 router.delete('/delete/:id', validateJWT, async (req, res) => {
     const username = req.user.username;
     const characterId = req.params.id;
