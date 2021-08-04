@@ -5,7 +5,7 @@ const {CharacterModel} = require('../models');
 
 
 router.get('/create', async (req, res) => {
-    let heroesname = require('./heroesnames.json');
+    let heroesnames = require('./heroesnames.json');
     res.status(200).json({
         json: heroesnames
     })
@@ -50,6 +50,20 @@ router.get('/findAll', validateJWT, async (req, res) => {
         })
     }
 })
+router.get('/:id', validateJWT, async(req, res) => {
+    let userId = req.params.id;
+    console.log(userId, "++++++++++++++++++++++++++++++++++++++++++++++++++")
+    try{
+        const userCharacter = await CharacterModel.findAll({
+            where: {
+                id: userId
+            }
+        });
+        res.status(200).json(userCharacter);
+    } catch (err) {
+        res.status(500).json({error: err}); //NEED HELP, NOT RETURNING MESSAGE, GET EMPTY ARRAY IN POSTMAN
+    }
+});
 
 router.delete('/delete/:id', validateJWT, async (req, res) => {
     try {
