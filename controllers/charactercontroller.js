@@ -51,6 +51,7 @@ router.get('/findAll', validateJWT, async (req, res) => {
     }
 })
 
+
 router.get('/usercharacters', validateJWT, async (req, res) => {
     const username = req.user.username
     try {
@@ -68,6 +69,7 @@ router.get('/usercharacters', validateJWT, async (req, res) => {
         })
     }
 })
+
 
 router.delete('/delete/:id', validateJWT, async (req, res) => {
     const username = req.user.username;
