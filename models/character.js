@@ -3,6 +3,7 @@ const db = require('../db');
 
 
 const Character = db.define('character', {
+
   characterName: {
     type: DataTypes.STRING,
     allowNull: false
@@ -58,6 +59,7 @@ const Character = db.define('character', {
   owner: {
     type: DataTypes.STRING
   }
+
 });
 
 module.exports = Character;
